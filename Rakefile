@@ -154,14 +154,14 @@ end
 
 desc 'Install these config files.'
 task :default do
-  Rake::Task['install:brew'].invoke
-  Rake::Task['install:brew_cask'].invoke
-  Rake::Task['install:the_silver_searcher'].invoke
-  Rake::Task['install:iterm'].invoke
-  Rake::Task['install:ctags'].invoke
-  Rake::Task['install:reattach_to_user_namespace'].invoke
-  Rake::Task['install:tmux'].invoke
-  Rake::Task['install:macvim'].invoke
+  #Rake::Task['install:brew'].invoke
+  #Rake::Task['install:brew_cask'].invoke
+  #Rake::Task['install:the_silver_searcher'].invoke
+  #Rake::Task['install:iterm'].invoke
+  #Rake::Task['install:ctags'].invoke
+  #Rake::Task['install:reattach_to_user_namespace'].invoke
+  #Rake::Task['install:tmux'].invoke
+  #Rake::Task['install:macvim'].invoke
 
   # TODO install gem ctags?
   # TODO run gem ctags?
@@ -170,25 +170,28 @@ task :default do
   link_file 'vim'                   , '~/.vim'
   link_file 'tmux.conf'             , '~/.tmux.conf'
   link_file 'vimrc'                 , '~/.vimrc'
+  link_file 'vimrc.local'           , '~/.vimrc.local'
   link_file 'vimrc.bundles'         , '~/.vimrc.bundles'
-  unless File.exist?(File.expand_path('~/.vimrc.local'))
-    cp File.expand_path('vimrc.local'), File.expand_path('~/.vimrc.local'), :verbose => true
-  end
-  unless File.exist?(File.expand_path('~/.vimrc.bundles.local'))
-    cp File.expand_path('vimrc.bundles.local'), File.expand_path('~/.vimrc.bundles.local'), :verbose => true
-  end
+  link_file 'vimrc.bundles.local'   , '~/.vimrc.bundles.local'
+  #unless File.exist?(File.expand_path('~/.vimrc.local'))
+  #  cp File.expand_path('vimrc.local'), File.expand_path('~/.vimrc.local'), :verbose => true
+  #end
+  #unless File.exist?(File.expand_path('~/.vimrc.bundles.local'))
+  #  puts "update vimrc.bundles.local"
+  #  cp File.expand_path('vimrc.bundles.local'), File.expand_path('~/.vimrc.bundles.local'), :verbose => true
+  #end
 
   # Install Vundle and bundles
   Rake::Task['install:vundle'].invoke
 
-  step 'iterm2 colorschemes'
-  colorschemes = `defaults read com.googlecode.iterm2 'Custom Color Presets'`
-  dark  = colorschemes !~ /Solarized Dark/
-  light = colorschemes !~ /Solarized Light/
-  sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Dark.itermcolors')) if dark
-  sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Light.itermcolors')) if light
+  #step 'iterm2 colorschemes'
+  #colorschemes = `defaults read com.googlecode.iterm2 'Custom Color Presets'`
+  #dark  = colorschemes !~ /Solarized Dark/
+  #light = colorschemes !~ /Solarized Light/
+  #sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Dark.itermcolors')) if dark
+  #sh('open', '-a', '/Applications/iTerm.app', File.expand_path('iterm2-colors-solarized/Solarized Light.itermcolors')) if light
 
-  step 'iterm2 profiles'
+  #step 'iterm2 profiles'
   puts
   puts "  Your turn!"
   puts
