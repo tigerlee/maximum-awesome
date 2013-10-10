@@ -12,6 +12,7 @@ colorscheme solarized
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.o,*.d,*.tgz
 
 set fileencodings=utf-8,gbk
+set hlsearch
 
 " avoid E37
 set hidden
